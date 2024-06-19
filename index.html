@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+
+    <title>@fawredd - Frontend Mentor | Calculator app</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      :root {
+        /* Given mode */
+        /* Theme 1 */
+        /* Backgrounds */
+        --mainBackground: hsl(222, 26%, 31%);
+        --toogle-keypad-bg: hsl(223, 31%, 20%);
+        --screen-bg: hsl(224, 36%, 15%);
+        /* Keys */
+        --key-dark-blue-bg: hsl(225, 21%, 49%);
+        --key-dark-blue-shadow: hsl(224, 28%, 35%);
+        --key-toggle-red-bg: hsl(6, 63%, 50%);
+        --key-red-shadow: hsl(6, 70%, 34%);
+        --key-light-bg: hsl(30, 25%, 89%);
+        --key-light-shadow: hsl(28, 16%, 65%);
+        /* Text */
+        --text-dark: hsl(221, 14%, 31%);
+        --text-light: hsl(0, 0%, 100%);
+
+        /* Theme 2 */
+        /* Backgrounds */
+        --mainBackground: hsl(0, 0%, 90%);
+        --toogle-keypad-bg: hsl(0, 5%, 81%);
+        --screen-bg: hsl(0, 0%, 93%);
+        /* Keys */
+        --key-dark-blue-bg: hsl(185, 42%, 37%);
+        --key-dark-blue-shadow: hsl(185, 58%, 25%);
+        --key-toggle-red-bg: hsl(25, 98%, 40%);
+        --key-red-shadow: hsl(25, 99%, 27%);
+        --key-light-bg: hsl(45, 7%, 89%);
+        --key-light-shadow: hsl(35, 11%, 61%);
+        /* Text */
+        --text-dark: hsl(60, 10%, 19%);
+        --text-light: hsl(0, 0%, 100%);
+
+        /* Theme 3 */
+        /* Backgrounds */
+        --mainBackground: hsl(268, 75%, 9%);
+        --toogle-keypad-bg: hsl(268, 71%, 12%);
+        --screen-bg: hsl(268, 71%, 12%);
+        /* Keys */
+        --key-dark-blue-bg: hsl(281, 89%, 26%);
+        --key-dark-blue-shadow: hsl(285, 91%, 52%);
+        --key-toggle-red-bg: hsl(176, 100%, 44%);
+        --key-red-shadow: hsl(177, 92%, 70%);
+        --key-light-bg: hsl(268, 47%, 21%);
+        --key-light-shadow: hsl(290, 70%, 36%);
+        /* Text */
+        --text-dark: hsl(198, 20%, 13%);
+        --text-light: hsl(0, 0%, 100%);
+        --text-yeloow: hsl(52, 100%, 62%);
+
+        /* Default mode */
+        margin: 0;
+        padding: 0;
+        font-family: "League Spartan", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 700;
+        font-style: normal;
+        font-size: 32px;
+        --text-color: var(--light-text);
+        --bg-color: var(--light-bg);
+        --theme-color: var(--light-theme);
+      }
+      .containerClass {
+        width:50vw;
+        margin: 0 auto;
+      }
+      .touchpadClass {
+        display: grid;
+        gap: 8px;
+        grid-template-columns: repeat(4, minmax(40px, 1fr));
+        grid-template-rows: repeat(5, minmax(40px, 1fr));
+      }
+      .touchpadClass button:nth-child(n + 17) {
+        grid-column: span 2;
+      }
+      
+      .touchpadClass button {
+        border-radius: 5px;
+      }
+
+      /* Switched mode */
+      #tsc1:checked {
+        --text-color: var(--dark-text);
+        --bg-color: var(--dark-bg);
+        --theme-color: var(--light-theme);
+      }
+      #tsc2:checked {
+        --text-color: var(--dark-text);
+        --bg-color: var(--dark-bg);
+        --theme-color: var(--light-theme);
+      }
+      #tsc3:checked {
+        --text-color: var(--dark-text);
+        --bg-color: var(--dark-bg);
+        --theme-color: var(--light-theme);
+      }
+
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="containerClass">
+      <section class="headerClass">
+        <h1>calc</h1>
+        <div class="themeClass">
+          <span>theme</span>
+          <div class="toogleSwitchClass">
+            <input id="tsc1" name="state-d" type="radio" checked="" />
+            <input id="tsc2" name="state-d" type="radio" checked="checked" />
+            <input id="tsc3" name="state-d" type="radio" checked="" />
+          </div>
+        </div>
+      </section>
+      <section class="displayClass">
+        <input type="text" id="displayId" disabled>
+      </section>
+      <section class="touchpadClass">
+        <button class="operation">7</button>
+        <button class="operation">8</button>
+        <button class="operation">9</button>
+        <button class="operation">DEL</button>
+        <button class="operation">4</button>
+        <button class="operation">5</button>
+        <button class="operation">6</button>
+        <button class="operation">+</button>
+        <button class="operation">1</button>
+        <button class="operation">2</button>
+        <button class="operation">3</button>
+        <button class="operation">-</button>
+        <button class="operation">.</button>
+        <button class="operation">0</button>
+        <button class="operation">/</button>
+        <button class="operation">x</button>
+
+        <button class="operation">RESET</button>
+        <button class="operation">=</button>
+      </section>
+    </main>
+
+    <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by <a href="https://www.github.com/fawredd">@fawredd</a>.
+    </div>
+    <script>
+      // This code is only used to remember theme selection
+      const themeSwitch = document.querySelector(".theme-switch");
+      themeSwitch.checked = localStorage.getItem("switchedTheme") === "true";
+
+      themeSwitch.addEventListener("change", function (e) {
+        if (e.currentTarget.checked === true) {
+          // Add item to localstorage
+          localStorage.setItem("switchedTheme", "true");
+        } else {
+          // Remove item if theme is switched back to normal
+          localStorage.removeItem("switchedTheme");
+        }
+      });
+    </script>
+  </body>
+</html>
