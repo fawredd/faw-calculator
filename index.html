@@ -27,52 +27,52 @@
         /* Given mode */
         /* Theme 1 */
         /* Backgrounds */
-        --mainBackground: hsl(222, 26%, 31%);
-        --toogle-keypad-bg: hsl(223, 31%, 20%);
-        --screen-bg: hsl(224, 36%, 15%);
+        --t1-mainBackground: hsl(222, 26%, 31%);
+        --t1-toogle-keypad-bg: hsl(223, 31%, 20%);
+        --t1-screen-bg: hsl(224, 36%, 15%);
         /* Keys */
-        --key-dark-blue-bg: hsl(225, 21%, 49%);
-        --key-dark-blue-shadow: hsl(224, 28%, 35%);
-        --key-toggle-red-bg: hsl(6, 63%, 50%);
-        --key-red-shadow: hsl(6, 70%, 34%);
-        --key-light-bg: hsl(30, 25%, 89%);
-        --key-light-shadow: hsl(28, 16%, 65%);
+        --t1-key-dark-blue-bg: hsl(225, 21%, 49%);
+        --t1-key-dark-blue-shadow: hsl(224, 28%, 35%);
+        --t1-key-toggle-red-bg: hsl(6, 63%, 50%);
+        --t1-key-red-shadow: hsl(6, 70%, 34%);
+        --t1-key-light-bg: hsl(30, 25%, 89%);
+        --t1-key-light-shadow: hsl(28, 16%, 65%);
         /* Text */
-        --text-dark: hsl(221, 14%, 31%);
-        --text-light: hsl(0, 0%, 100%);
+        --t1-text-dark: hsl(221, 14%, 31%);
+        --t1-text-light: hsl(0, 0%, 100%);
 
         /* Theme 2 */
         /* Backgrounds */
-        --mainBackground: hsl(0, 0%, 90%);
-        --toogle-keypad-bg: hsl(0, 5%, 81%);
-        --screen-bg: hsl(0, 0%, 93%);
+        --t2-mainBackground: hsl(0, 0%, 90%);
+        --t2-toogle-keypad-bg: hsl(0, 5%, 81%);
+        --t2-screen-bg: hsl(0, 0%, 93%);
         /* Keys */
-        --key-dark-blue-bg: hsl(185, 42%, 37%);
-        --key-dark-blue-shadow: hsl(185, 58%, 25%);
-        --key-toggle-red-bg: hsl(25, 98%, 40%);
-        --key-red-shadow: hsl(25, 99%, 27%);
-        --key-light-bg: hsl(45, 7%, 89%);
-        --key-light-shadow: hsl(35, 11%, 61%);
+        --t2-key-dark-blue-bg: hsl(185, 42%, 37%);
+        --t2-key-dark-blue-shadow: hsl(185, 58%, 25%);
+        --t2-key-toggle-red-bg: hsl(25, 98%, 40%);
+        --t2-key-red-shadow: hsl(25, 99%, 27%);
+        --t2-key-light-bg: hsl(45, 7%, 89%);
+        --t2-key-light-shadow: hsl(35, 11%, 61%);
         /* Text */
-        --text-dark: hsl(60, 10%, 19%);
-        --text-light: hsl(0, 0%, 100%);
+        --t2-text-dark: hsl(60, 10%, 19%);
+        --t2-text-light: hsl(0, 0%, 100%);
 
         /* Theme 3 */
         /* Backgrounds */
-        --mainBackground: hsl(268, 75%, 9%);
-        --toogle-keypad-bg: hsl(268, 71%, 12%);
-        --screen-bg: hsl(268, 71%, 12%);
+        --t3-mainBackground: hsl(268, 75%, 9%);
+        --t3-toogle-keypad-bg: hsl(268, 71%, 12%);
+        --t3-screen-bg: hsl(268, 71%, 12%);
         /* Keys */
-        --key-dark-blue-bg: hsl(281, 89%, 26%);
-        --key-dark-blue-shadow: hsl(285, 91%, 52%);
-        --key-toggle-red-bg: hsl(176, 100%, 44%);
-        --key-red-shadow: hsl(177, 92%, 70%);
-        --key-light-bg: hsl(268, 47%, 21%);
-        --key-light-shadow: hsl(290, 70%, 36%);
+        --t3-key-dark-blue-bg: hsl(281, 89%, 26%);
+        --t3-key-dark-blue-shadow: hsl(285, 91%, 52%);
+        --t3-key-toggle-red-bg: hsl(176, 100%, 44%);
+        --t3-key-red-shadow: hsl(177, 92%, 70%);
+        --t3-key-light-bg: hsl(268, 47%, 21%);
+        --t3-key-light-shadow: hsl(290, 70%, 36%);
         /* Text */
-        --text-dark: hsl(198, 20%, 13%);
-        --text-light: hsl(0, 0%, 100%);
-        --text-yeloow: hsl(52, 100%, 62%);
+        --t3-text-dark: hsl(198, 20%, 13%);
+        --t3-text-light: hsl(0, 0%, 100%);
+        --t3-text-yeloow: hsl(52, 100%, 62%);
 
         /* Default mode */
         margin: 0;
@@ -82,26 +82,88 @@
         font-weight: 700;
         font-style: normal;
         font-size: 32px;
+        --radius: 10px;
         --text-color: var(--light-text);
         --bg-color: var(--light-bg);
         --theme-color: var(--light-theme);
       }
-      .containerClass {
-        width:50vw;
-        margin: 0 auto;
+
+      body {
+        background-color: var(--t1-mainBackground);
       }
+      .containerClass {
+        width: 50vw;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
       .touchpadClass {
         display: grid;
-        gap: 8px;
+        gap: 12px;
         grid-template-columns: repeat(4, minmax(40px, 1fr));
         grid-template-rows: repeat(5, minmax(40px, 1fr));
+        background-color: var(--t1-toogle-keypad-bg);
+        padding: 20px;
+        border-radius: var(--radius);
       }
+
       .touchpadClass button:nth-child(n + 17) {
         grid-column: span 2;
       }
-      
+
       .touchpadClass button {
-        border-radius: 5px;
+        border-radius: var(--radius);
+        font-weight: bold;
+      }
+
+      .toogleSwitchClass {
+        background-color: var(--t1-toogle-keypad-bg);
+        border-radius: 50%;
+        font-size: 0;
+        height: auto;
+        vertical-align: middle;
+        padding: 5px;
+      }
+      .toggleSwitchClass label {
+        display: inline-block;
+        position:relative;
+        cursor: pointer;
+      }
+      .toggle-button {
+        position:absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border:none;
+        background-color: #fff;
+        transition: all 0.3s ease;
+      }
+      .toggleSwitchClass input[type="radio"]:checked + .toggle-button {
+        background-color: var(--t1-key-toggle-red-bg);
+      }
+      .toogleSwitchClass input {
+        position:absolute;
+        padding: 0;
+        margin: 0;
+        appearance: none;
+      }
+
+      .displayClass {
+        height: 50px;
+        background-color: var(--t1-screen-bg);
+        display: flex;
+        justify-content: end;
+        padding: 20px;
+        border-radius: var(--radius);
+      }
+
+      .displayClass input {
+        background-color: white;
+        border: none;
+        opacity: 50%;
+        width: 100%;
       }
 
       /* Switched mode */
@@ -136,15 +198,24 @@
         <h1>calc</h1>
         <div class="themeClass">
           <span>theme</span>
-          <div class="toogleSwitchClass">
-            <input id="tsc1" name="state-d" type="radio" checked="" />
-            <input id="tsc2" name="state-d" type="radio" checked="checked" />
-            <input id="tsc3" name="state-d" type="radio" checked="" />
+          <div class="toggleSwitchClass">
+            <label for="tsc1">
+              <input id="tsc1" type="radio" name="state-d" checked />
+              <span class="toggle-button"></span>
+            </label>
+            <label for="tsc2">
+              <input id="tsc2" type="radio" name="state-d" />
+              <span class="toggle-button"></span>
+            </label>
+            <label for="tsc3">
+              <input id="tsc3" type="radio" name="state-d" />
+              <span class="toggle-button"></span>
+            </label>
           </div>
         </div>
       </section>
       <section class="displayClass">
-        <input type="text" id="displayId" disabled>
+        <input type="text" id="displayId" disabled />
       </section>
       <section class="touchpadClass">
         <button class="operation">7</button>
