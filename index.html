@@ -82,7 +82,7 @@
         font-weight: 700;
         font-style: normal;
         font-size: 32px;
-        --radius: 10px;
+        --radius: 5px;
         --text-color: var(--light-text);
         --bg-color: var(--light-bg);
         --theme-color: var(--light-theme);
@@ -91,63 +91,75 @@
       body {
         background-color: var(--t1-mainBackground);
       }
+
       .containerClass {
         width: 50vw;
         margin: 0 auto;
         display: flex;
         flex-direction: column;
+        flex-grow: 0;
         gap: 15px;
       }
 
-      .touchpadClass {
+      .headerClass {
+        display:flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-content: center;
+      }
+      .headerClass .title {
+        color: var(--t1-text-light);
+        margin:0;
+      }
+      .themeClass {
         display: grid;
-        gap: 12px;
-        grid-template-columns: repeat(4, minmax(40px, 1fr));
-        grid-template-rows: repeat(5, minmax(40px, 1fr));
+        grid-template-columns: repeat(2, minmax(auto, 1fr));
+        grid-template-rows: repeat(2, minmax(auto, 1fr));
+        font-size: 8px;
+        max-width: 100px;
+        min-width: 90px;
+        justify-content: center;
+        color: var(--t1-text-light);
+      }
+      .themeClass .title {
+        text-transform: uppercase;
+        justify-self: left;
+        align-self: center;
+      }
+      .themeClass .themeNumberTitle {
+        display: flex;
+        justify-content: space-between;
+        align-self: center;
+        padding: 0 7px;
+      }
+      .toggleSwitchClass {
+        display: flex;
+        justify-content: space-between;
         background-color: var(--t1-toogle-keypad-bg);
-        padding: 20px;
-        border-radius: var(--radius);
-      }
-
-      .touchpadClass button:nth-child(n + 17) {
-        grid-column: span 2;
-      }
-
-      .touchpadClass button {
-        border-radius: var(--radius);
-        font-weight: bold;
-      }
-
-      .toogleSwitchClass {
-        background-color: var(--t1-toogle-keypad-bg);
-        border-radius: 50%;
-        font-size: 0;
-        height: auto;
+        border-radius: 8px;
         vertical-align: middle;
         padding: 5px;
+        font-size: 0;
       }
       .toggleSwitchClass label {
         display: inline-block;
-        position:relative;
+        position: relative;
         cursor: pointer;
       }
-      .toggle-button {
-        position:absolute;
-        width: 10px;
-        height: 10px;
+      .toggleSwitchClass .toggle-button {
+        display: block;
+        width: 8px;
+        height: 8px;
         border-radius: 50%;
-        border:none;
-        background-color: #fff;
+        border: none;
+        background-color: transparent;
         transition: all 0.3s ease;
       }
       .toggleSwitchClass input[type="radio"]:checked + .toggle-button {
         background-color: var(--t1-key-toggle-red-bg);
       }
-      .toogleSwitchClass input {
-        position:absolute;
-        padding: 0;
-        margin: 0;
-        appearance: none;
+      .toggleSwitchClass input {
+        display: none;
       }
 
       .displayClass {
@@ -158,12 +170,43 @@
         padding: 20px;
         border-radius: var(--radius);
       }
-
       .displayClass input {
         background-color: white;
         border: none;
         opacity: 50%;
         width: 100%;
+      }
+
+      .touchpadClass {
+        display: grid;
+        gap: 10px;
+        grid-template-columns: repeat(4, minmax(36px, 1fr));
+        grid-template-rows: repeat(5, minmax(34px, 0.8fr));
+        background-color: var(--t1-toogle-keypad-bg);
+        padding: 12px;
+        border-radius: var(--radius);
+      }
+      .touchpadClass button:nth-child(n + 17) {
+        grid-column: span 2;
+      }
+      .touchpadClass button {
+        border-radius: var(--radius);
+        border-color: transparent;
+        font-weight: bold;
+      }
+      .touchpadClass button.keys {
+        font-size: 0.6rem;
+        color: var(--t1-text-dark);
+      }
+      .touchpadClass button.keyDelRes {
+        font-size: 0.4rem;
+        color: var(--t1-text-light);
+        background-color: var(--t1-key-dark-blue-bg);
+      }
+      .touchpadClass button.keyEqual {
+        font-size: 0.3rem;
+        color: var(--t1-text-light);
+        background-color: var(--t1-key-toggle-red-bg);
       }
 
       /* Switched mode */
@@ -186,18 +229,26 @@
       .attribution {
         font-size: 11px;
         text-align: center;
+        margin-top: 20px;
       }
       .attribution a {
-        color: hsl(228, 45%, 44%);
+        color: var(--t1-key-light-bg);
       }
     </style>
   </head>
   <body>
     <main class="containerClass">
       <section class="headerClass">
-        <h1>calc</h1>
+        <div class="title">calc</div>
         <div class="themeClass">
-          <span>theme</span>
+          <span>&nbsp;</span>
+          <div class="themeNumberTitle">
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+          </div>
+          <span class="title">theme</span>
+
           <div class="toggleSwitchClass">
             <label for="tsc1">
               <input id="tsc1" type="radio" name="state-d" checked />
@@ -214,29 +265,31 @@
           </div>
         </div>
       </section>
+
       <section class="displayClass">
         <input type="text" id="displayId" disabled />
       </section>
-      <section class="touchpadClass">
-        <button class="operation">7</button>
-        <button class="operation">8</button>
-        <button class="operation">9</button>
-        <button class="operation">DEL</button>
-        <button class="operation">4</button>
-        <button class="operation">5</button>
-        <button class="operation">6</button>
-        <button class="operation">+</button>
-        <button class="operation">1</button>
-        <button class="operation">2</button>
-        <button class="operation">3</button>
-        <button class="operation">-</button>
-        <button class="operation">.</button>
-        <button class="operation">0</button>
-        <button class="operation">/</button>
-        <button class="operation">x</button>
 
-        <button class="operation">RESET</button>
-        <button class="operation">=</button>
+      <section class="touchpadClass">
+        <button class="keys">7</button>
+        <button class="keys">8</button>
+        <button class="keys">9</button>
+        <button class="keyDelRes">DEL</button>
+        <button class="keys">4</button>
+        <button class="keys">5</button>
+        <button class="keys">6</button>
+        <button class="keys">+</button>
+        <button class="keys">1</button>
+        <button class="keys">2</button>
+        <button class="keys">3</button>
+        <button class="keys">-</button>
+        <button class="keys">.</button>
+        <button class="keys">0</button>
+        <button class="keys">/</button>
+        <button class="keys">x</button>
+
+        <button class="keyDelRes">RESET</button>
+        <button class="keyEqual">=</button>
       </section>
     </main>
 
