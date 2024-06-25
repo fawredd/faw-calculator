@@ -83,17 +83,31 @@
         font-style: normal;
         font-size: 32px;
         --radius: 5px;
-        --text-color: var(--light-text);
-        --bg-color: var(--light-bg);
-        --theme-color: var(--light-theme);
+        /* Backgrounds */
+        --mainBackground: var(--t1-mainBackground);
+        --toogle-keypad-bg: var(--t1-toogle-keypad-bg);
+        --screen-bg: var(--t1-screen-bg);
+        /* Keys */
+        --key-dark-bg: var(--t1-key-dark-blue-bg);
+        --key-dark-shadow: var(--t1-key-dark-blue-shadow);
+        --key-toggle-red-bg: var(--t1-key-toggle-red-bg);
+        --key-red-shadow: var(--t1-key-red-shadow);
+        --key-light-bg: var(--t1-key-light-bg);
+        --key-light-shadow: var(--t1-key-light-shadow);
+        /* Text */
+        --text-dark:var(--t1-text-dark);
+        --text-light: var(--t1-text-light);
+
       }
 
       body {
-        background-color: var(--t1-mainBackground);
+        background-color: var(--mainBackground);
       }
 
       .containerClass {
         width: 50vw;
+        min-width: 300px;
+        max-width: 300px;
         margin: 0 auto;
         display: flex;
         flex-direction: column;
@@ -108,8 +122,10 @@
         align-content: center;
       }
       .headerClass .title {
-        color: var(--t1-text-light);
+        color: var(--text-light);
         margin:0;
+        font-size:0.7rem;
+        align-self:self-end;
       }
       .themeClass {
         display: grid;
@@ -119,9 +135,9 @@
         max-width: 100px;
         min-width: 90px;
         justify-content: center;
-        color: var(--t1-text-light);
+        color: var(--text-light);
       }
-      .themeClass .title {
+      .themeClass .switchTitle {
         text-transform: uppercase;
         justify-self: left;
         align-self: center;
@@ -130,15 +146,15 @@
         display: flex;
         justify-content: space-between;
         align-self: center;
-        padding: 0 7px;
+        padding: 0 6px;
       }
       .toggleSwitchClass {
         display: flex;
         justify-content: space-between;
-        background-color: var(--t1-toogle-keypad-bg);
+        background-color: var(--toogle-keypad-bg);
         border-radius: 8px;
         vertical-align: middle;
-        padding: 5px;
+        padding: 3px;
         font-size: 0;
       }
       .toggleSwitchClass label {
@@ -156,25 +172,30 @@
         transition: all 0.3s ease;
       }
       .toggleSwitchClass input[type="radio"]:checked + .toggle-button {
-        background-color: var(--t1-key-toggle-red-bg);
+        background-color: var(--key-toggle-red-bg);
       }
       .toggleSwitchClass input {
-        display: none;
+        position:absolute;
+        visibility: hidden;
+        /* display: none; */
       }
 
       .displayClass {
         height: 50px;
-        background-color: var(--t1-screen-bg);
+        background-color: var(--screen-bg);
         display: flex;
         justify-content: end;
-        padding: 20px;
+        padding: 6px 10px;
         border-radius: var(--radius);
       }
       .displayClass input {
-        background-color: white;
+        background-color: transparent;
         border: none;
-        opacity: 50%;
         width: 100%;
+        color:var(--text-light);
+        text-align: right;
+        font-size: xx-large;
+        font-weight: bold;
       }
 
       .touchpadClass {
@@ -182,7 +203,7 @@
         gap: 10px;
         grid-template-columns: repeat(4, minmax(36px, 1fr));
         grid-template-rows: repeat(5, minmax(34px, 0.8fr));
-        background-color: var(--t1-toogle-keypad-bg);
+        background-color: var(--toogle-keypad-bg);
         padding: 12px;
         border-radius: var(--radius);
       }
@@ -193,37 +214,74 @@
         border-radius: var(--radius);
         border-color: transparent;
         font-weight: bold;
+        
       }
       .touchpadClass button.keys {
         font-size: 0.6rem;
-        color: var(--t1-text-dark);
+        color: var(--text-dark);
+        box-shadow: 0px 2px var(--key-light-shadow);
       }
       .touchpadClass button.keyDelRes {
         font-size: 0.4rem;
-        color: var(--t1-text-light);
-        background-color: var(--t1-key-dark-blue-bg);
+        color: var(--text-light);
+        background-color: var(--key-dark-bg);
+        box-shadow: 0px 2px var(--key-dark-shadow);
       }
       .touchpadClass button.keyEqual {
         font-size: 0.3rem;
         color: var(--t1-text-light);
-        background-color: var(--t1-key-toggle-red-bg);
+        background-color: var(--key-toggle-red-bg);
+        box-shadow: 0px 2px var(--key-red-shadow);
       }
 
       /* Switched mode */
-      #tsc1:checked {
-        --text-color: var(--dark-text);
-        --bg-color: var(--dark-bg);
-        --theme-color: var(--light-theme);
+      .t1Active {
+        /* Backgrounds */
+        --mainBackground: var(--t1-mainBackground);
+        --toogle-keypad-bg: var(--t1-toogle-keypad-bg);
+        --screen-bg: var(--t1-screen-bg);
+        /* Keys */
+        --key-dark-bg: var(--t1-key-dark-blue-bg);
+        --key-dark-shadow: var(--t1-key-dark-blue-shadow);
+        --key-toggle-red-bg: var(--t1-key-toggle-red-bg);
+        --key-red-shadow: var(--t1-key-red-shadow);
+        --key-light-bg: var(--t1-key-light-bg);
+        --key-light-shadow: var(--t1-key-light-shadow);
+        /* Text */
+        --text-dark:var(--t1-text-dark);
+        --text-light: var(--t1-text-light););
       }
-      #tsc2:checked {
-        --text-color: var(--dark-text);
-        --bg-color: var(--dark-bg);
-        --theme-color: var(--light-theme);
+      .t2Active {
+        /* Backgrounds */
+        --mainBackground: var(--t2-mainBackground);
+        --toogle-keypad-bg: var(--t2-toogle-keypad-bg);
+        --screen-bg: var(--t2-screen-bg);
+        /* Keys */
+        --key-dark-bg: var(--t2-key-dark-blue-bg);
+        --key-dark-shadow: var(--t2-key-dark-blue-shadow);
+        --key-toggle-red-bg: var(--t2-key-toggle-red-bg);
+        --key-red-shadow: var(--t2-key-red-shadow);
+        --key-light-bg: var(--t2-key-light-bg);
+        --key-light-shadow: var(--t2-key-light-shadow);
+        /* Text */
+        --text-dark:var(--t2-text-dark);
+        --text-light: var(--t2-text-light);
       }
-      #tsc3:checked {
-        --text-color: var(--dark-text);
-        --bg-color: var(--dark-bg);
-        --theme-color: var(--light-theme);
+      .t3Active{
+        /* Backgrounds */
+        --mainBackground: var(--t3-mainBackground);
+        --toogle-keypad-bg: var(--t3-toogle-keypad-bg);
+        --screen-bg: var(--t3-screen-bg);
+        /* Keys */
+        --key-dark-bg: var(--t3-key-dark-blue-bg);
+        --key-dark-shadow: var(--t3-key-dark-blue-shadow);
+        --key-toggle-red-bg: var(--t3-key-toggle-red-bg);
+        --key-red-shadow: var(--t3-key-red-shadow);
+        --key-light-bg: var(--t3-key-light-bg);
+        --key-light-shadow: var(--t3-key-light-shadow);
+        /* Text */
+        --text-dark:var(--t3-text-dark);
+        --text-light: var(--t3-text-light);
       }
 
       .attribution {
@@ -247,7 +305,7 @@
             <span>2</span>
             <span>3</span>
           </div>
-          <span class="title">theme</span>
+          <span class="switchTitle">theme</span>
 
           <div class="toggleSwitchClass">
             <label for="tsc1">
@@ -267,7 +325,7 @@
       </section>
 
       <section class="displayClass">
-        <input type="text" id="displayId" disabled />
+        <input type="text" id="displayId" value="0" disabled />
       </section>
 
       <section class="touchpadClass">
@@ -295,24 +353,44 @@
 
     <div class="attribution">
       Challenge by
-      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
-        >Frontend Mentor</a
-      >. Coded by <a href="https://www.github.com/fawredd">@fawredd</a>.
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">
+        Frontend Mentor
+      </a>. 
+      Coded by 
+      <a href="https://www.github.com/fawredd">
+        @fawredd
+      </a>.
     </div>
     <script>
-      // This code is only used to remember theme selection
-      const themeSwitch = document.querySelector(".theme-switch");
-      themeSwitch.checked = localStorage.getItem("switchedTheme") === "true";
-
-      themeSwitch.addEventListener("change", function (e) {
+      document.addEventListener("DOMContentLoaded",function(e){
+      // This code is used to change themes
+      const theBody = document.querySelector("body");
+      const themeSwitch1 = document.querySelector("#tsc1");
+      const themeSwitch2 = document.querySelector("#tsc2");
+      const themeSwitch3 = document.querySelector("#tsc3");
+      themeSwitch1.addEventListener("change", function (e) {
         if (e.currentTarget.checked === true) {
-          // Add item to localstorage
-          localStorage.setItem("switchedTheme", "true");
-        } else {
-          // Remove item if theme is switched back to normal
-          localStorage.removeItem("switchedTheme");
+          theBody.className = "";
+          theBody.classList.add("t1Active");
         }
       });
+      themeSwitch2.addEventListener("change", function (e) {
+        if (e.currentTarget.checked === true) {
+          theBody.className = "";
+          theBody.classList.add("t2Active");
+        }
+      });
+      themeSwitch3.addEventListener("change", function (e) {
+        if (e.currentTarget.checked === true) {
+          theBody.className = "";
+          theBody.classList.add("t3Active");
+        }
+      });
+      // This code is all about the calc itself
+      const display = document.querySelector("#displayId");
+      // const keys = document.querySelector("#keys");
+
+    });
     </script>
   </body>
 </html>
