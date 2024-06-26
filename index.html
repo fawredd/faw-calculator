@@ -214,7 +214,7 @@
         border-radius: var(--radius);
         border-color: transparent;
         font-weight: bold;
-        
+
       }
       .touchpadClass button.keys {
         font-size: 0.6rem;
@@ -325,72 +325,113 @@
       </section>
 
       <section class="displayClass">
-        <input type="text" id="displayId" value="0" disabled />
+        <input type="text" id="displayId" value="0" disabled maxlength="15"/>
       </section>
 
       <section class="touchpadClass">
-        <button class="keys">7</button>
-        <button class="keys">8</button>
-        <button class="keys">9</button>
-        <button class="keyDelRes">DEL</button>
-        <button class="keys">4</button>
-        <button class="keys">5</button>
-        <button class="keys">6</button>
-        <button class="keys">+</button>
-        <button class="keys">1</button>
-        <button class="keys">2</button>
-        <button class="keys">3</button>
-        <button class="keys">-</button>
-        <button class="keys">.</button>
-        <button class="keys">0</button>
-        <button class="keys">/</button>
-        <button class="keys">x</button>
+        <button id="key" class="keys">7</button>
+        <button id="key" class="keys">8</button>
+        <button id="key" class="keys">9</button>
+        <button id="key" class="keyDelRes">DEL</button>
+        <button id="key" class="keys">4</button>
+        <button id="key" class="keys">5</button>
+        <button id="key" class="keys">6</button>
+        <button id="key" class="keys">+</button>
+        <button id="key" class="keys">1</button>
+        <button id="key" class="keys">2</button>
+        <button id="key" class="keys">3</button>
+        <button id="key" class="keys">-</button>
+        <button id="key" class="keys">.</button>
+        <button id="key" class="keys">0</button>
+        <button id="key" class="keys">/</button>
+        <button id="key" class="keys">x</button>
 
-        <button class="keyDelRes">RESET</button>
-        <button class="keyEqual">=</button>
+        <button id="key" class="keyDelRes">RESET</button>
+        <button id="key" class="keyEqual">=</button>
       </section>
     </main>
 
     <div class="attribution">
       Challenge by
       <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">
-        Frontend Mentor
-      </a>. 
-      Coded by 
-      <a href="https://www.github.com/fawredd">
-        @fawredd
-      </a>.
+        Frontend Mentor </a
+      >. Coded by <a href="https://www.github.com/fawredd"> @fawredd </a>.
     </div>
     <script>
-      document.addEventListener("DOMContentLoaded",function(e){
-      // This code is used to change themes
-      const theBody = document.querySelector("body");
-      const themeSwitch1 = document.querySelector("#tsc1");
-      const themeSwitch2 = document.querySelector("#tsc2");
-      const themeSwitch3 = document.querySelector("#tsc3");
-      themeSwitch1.addEventListener("change", function (e) {
-        if (e.currentTarget.checked === true) {
-          theBody.className = "";
-          theBody.classList.add("t1Active");
-        }
-      });
-      themeSwitch2.addEventListener("change", function (e) {
-        if (e.currentTarget.checked === true) {
-          theBody.className = "";
-          theBody.classList.add("t2Active");
-        }
-      });
-      themeSwitch3.addEventListener("change", function (e) {
-        if (e.currentTarget.checked === true) {
-          theBody.className = "";
-          theBody.classList.add("t3Active");
-        }
-      });
-      // This code is all about the calc itself
-      const display = document.querySelector("#displayId");
-      // const keys = document.querySelector("#keys");
+      document.addEventListener("DOMContentLoaded", function (e) {
+        // This code is used to change themes
+        const theBody = document.querySelector("body");
+        const themeSwitch1 = document.querySelector("#tsc1");
+        const themeSwitch2 = document.querySelector("#tsc2");
+        const themeSwitch3 = document.querySelector("#tsc3");
+        themeSwitch1.addEventListener("change", function (e) {
+          if (e.currentTarget.checked === true) {
+            theBody.className = "";
+            theBody.classList.add("t1Active");
+          }
+        });
+        themeSwitch2.addEventListener("change", function (e) {
+          if (e.currentTarget.checked === true) {
+            theBody.className = "";
+            theBody.classList.add("t2Active");
+          }
+        });
+        themeSwitch3.addEventListener("change", function (e) {
+          if (e.currentTarget.checked === true) {
+            theBody.className = "";
+            theBody.classList.add("t3Active");
+          }
+        });
+        // This code is all about the calc itself
+        const display = document.querySelector("#displayId");
+        const keys = document.querySelectorAll("#key");
+        let oldKey = "0";
+        keys.forEach((element) => {
+          element.addEventListener("click", function (e) {
+            e.preventDefault();
+            let keyValue = e.target.textContent;
+            if (isNaN(keyValue)){
+              switch (keyValue){
+                case "=":
+                  display.value = eval(display.value);
+                  keyValue = "";
+                  break;
+                case "DEL":
+                  display.value = display.value.slice(0,-1);
+                  (display.value.length>0)?keyValue = "":keyValue="0";
+                  break;
+                case "RESET":
+                  display.value = "0";
+                  keyValue = "0";
+                  break;
+                default:
+                  if (oldKey == keyValue){
+                    keyValue = "";
+                  }
+                  if (display.value == "0" && keyValue == "/"){
+                    keyValue = "0";
+                  }
 
-    });
+                  break;
+              }
+            }
+            let logData = {
+              display: display.value,
+              keyValue: keyValue,
+              oldKey: oldKey
+            }
+            console.log(`CERO /n ${JSON.stringify(logData)}`);
+            if (display.value == "0"){
+              display.value = keyValue;
+            }else{
+              display.value += keyValue;
+            }
+            display.value = display.value.replace("x","*")
+            oldKey = keyValue;
+
+          });
+        });
+      });
     </script>
   </body>
 </html>
