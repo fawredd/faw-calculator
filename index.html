@@ -101,18 +101,23 @@
       }
 
       body {
+        display:grid;
+        grid-template-rows: 1fr auto;
         background-color: var(--mainBackground);
+        margin:0;
+        height:100vh;
+        
       }
 
       .containerClass {
-        width: 50vw;
         min-width: 300px;
         max-width: 300px;
-        margin: 0 auto;
         display: flex;
         flex-direction: column;
         flex-grow: 0;
         gap: 15px;
+        margin: 0 auto;
+        align-self: center;
       }
 
       .headerClass {
@@ -287,7 +292,7 @@
       .attribution {
         font-size: 11px;
         text-align: center;
-        margin-top: 20px;
+        margin-bottom: 1rem;
       }
       .attribution a {
         color: var(--t1-key-light-bg);
@@ -325,7 +330,7 @@
       </section>
 
       <section class="displayClass">
-        <input type="text" id="displayId" value="0" disabled maxlength="15"/>
+        <input type="text" id="displayId" value="0" disabled />
       </section>
 
       <section class="touchpadClass">
@@ -390,6 +395,10 @@
           element.addEventListener("click", function (e) {
             e.preventDefault();
             let keyValue = e.target.textContent;
+            // Playing game security for eval() prevention.
+            const regex = /[\+\-\*\.\\\d{1,}\.]+/g; // Matches one or more numbers or signs
+            if (display.value.length != display.value.match(regex).join("").length) display.value ="0";
+
             if (isNaN(keyValue)){
               switch (keyValue){
                 case "=":
